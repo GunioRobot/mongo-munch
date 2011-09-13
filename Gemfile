@@ -1,0 +1,11 @@
+source 'http://rubygems.org'
+
+gem 'sinatra'
+gem 'mongo'
+gem 'json'
+gem 'bson_ext'
+gem 'shotgun'
+gem 'capistrano'
+gem 'capistrano-ext'
+gem 'sass'
+gem 'sinatra-assetpack', :require => 'sinatra/assetpack'

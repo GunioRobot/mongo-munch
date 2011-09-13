@@ -1,0 +1,6 @@
+(function() {
+  window.App.Templates = App.Templates || {}
+  window.App.Templates['DatabaseEdit'] = _.template('<form>\n  <input name=\'id\' type=\'hidden\' value=\'<%= model.escape(\'id\') %>\' />\n  <label for=\'name\'>Name</label>\n  <input name=\'name\' type=\'text\' value=\'<%= model.escape(\'name\') %>\' />\n  <% if (model.isNew()) { %>\n  <button>Create</button>\n  <% } else { %>\n  <a class="delete" href="#">delete</a>\n  <button>Save</button>\n  <% } %>\n</form>');
+  window.App.Templates['DatabaseIndex'] = _.template('<% if (collection.models.length > 0) { %>\n<h3>\n  <a href=\'#new\'>Create New</a>\n</h3>\n<ul>\n  <% collection.each(function(item) { %>\n  <li>\n    <a href=\'#databases/<%= item.id %>/collections\'><%= item.escape(\'id\') %></a>\n    <a href=\'#databases/<%= item.id %>\'>edit</a>\n  </li><% }); %>\n</ul>\n<% } else { %>\n<h3>No documents! <a href=\'#new\'>Create one</a></h3>\n<% } %>');
+  window.App.Templates['CollectionIndex'] = _.template('<% if (collection.models.length > 0) { %>\n<h3>\n  <a href=\'#new\'>Create New</a>\n</h3>\n<ul>\n  <% collection.each(function(item) { %>\n  <li>\n    <a href=\'#databases/<%= item.id %>\'><%= item.escape(\'id\') %></a>\n  </li><% }); %>\n</ul>\n<% } else { %>\n<h3>No collections! <a href=\'#new\'>Create one</a></h3>\n<% } %>');
+}).call(this)

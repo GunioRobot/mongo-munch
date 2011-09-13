@@ -1,0 +1,90 @@
+
+@import "app/css/fluid_grid";
+
+#container {
+  @include container;
+}
+
+header {
+  @include grid(12);
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+header h1 {
+  text-align: center;
+}
+
+#main {
+  margin-bottom: 10px;
+
+  #left {
+    @include grid(3)
+  }
+
+  #middle {
+    @include grid(6)
+  }
+
+  #right {
+    @include grid(3)
+  }
+
+}
+
+footer p {
+  @include grid(12);
+  text-align: center;
+}
+
+// Global formatting
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  border-spacing: 2px;
+  border-collapse: collapse;
+}
+
+
+thead th.first {
+  -moz-border-radius-topleft: 4px;
+  -webkit-border-top-left-radius: 4px;
+  border-top-left-radius: 4px 4px;
+}
+
+th {
+  background: #36393D;
+  color: white;
+  padding: 6px;
+  font-weight: bold;
+  text-align: left;
+}
+
+thead th.last {
+  -moz-border-radius-topright: 4px;
+  -webkit-border-top-right-radius: 4px;
+  border-top-right-radius: 4px 4px;
+}
+
+td {
+  border-bottom: 1px solid #F0F0EE;
+  padding: 6px;
+}
+
+tr.odd {
+  background: #EBEBEB;
+}
+
+tfoot th.first {
+  -moz-border-radius-bottomleft: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  border-bottom-left-radius: 4px 4px;
+}
+
+tfoot th.last {
+  -moz-border-radius-bottomright: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+  border-bottom-right-radius: 4px 4px;
+}
+
