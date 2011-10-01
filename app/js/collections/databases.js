@@ -1,6 +1,4 @@
-(function() {
-  window.App.Collections.Databases = Backbone.Collection.extend({
-    model: Database,
-    url: '/databases'
-  })
-}).call(this)
+window.App.Collections.Databases = Backbone.Collection.extend({
+  model: App.Models.Database,
+  url: '/databases'
+})
