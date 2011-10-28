@@ -5,7 +5,7 @@
       return this.render()
     },
     render: function() {
-      $(this.el).html(App.Templates.CollectionIndex({
+      $(this.el).html(JST['collection_index']({
         collection: this.collection
       }))
       return $("#middle").html(this.el)

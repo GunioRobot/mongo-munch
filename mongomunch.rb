@@ -5,11 +5,14 @@ require 'mongo'
 require 'json'
 require 'sinatra/assetpack'
 require 'sass'
+require 'sinatra/jstpages'
 
 class MongoMunch < Sinatra::Base
 
   set :root, File.dirname(__FILE__)
   register Sinatra::AssetPack
+  register Sinatra::JstPages
+  serve_jst '/jst.js'
 
   assets do
     js :application, [
@@ -21,7 +24,8 @@ class MongoMunch < Sinatra::Base
       '/js/models/*.js',
       '/js/views/*.js',
       '/js/collections/*.js',
-      '/js/routers/*.js'
+      '/js/routers/*.js',
+      '/jst.js'
     ]
     css :application, ['/css/style.css','/css/application.css']
     js_compression  :jsmin
@@ -45,7 +49,7 @@ class MongoMunch < Sinatra::Base
   get '/databases' do
     content_type :json
     connection = Mongo::Connection.new
-    connection.database_info.to_a.map{|db| {id:db[0],name:db[0],size:db[1]} }.to_json
+    connection.database_info.to_a.map{|db| {id:db[0],name:db[0],size:db[1]} }.sort_by{ |c| c['name'] }.to_json
   end
 
   get '/databases/:name' do |name|

@@ -35,7 +35,7 @@
       return false
     },
     render: function() {
-      $(this.el).html(App.Templates.DatabaseEdit({
+      $(this.el).html(JST['database_edit']({
         model: this.model
       }))
       return $("#left").html(this.el)

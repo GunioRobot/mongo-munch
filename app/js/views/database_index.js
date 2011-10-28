@@ -5,7 +5,7 @@
       return this.render()
     },
     render: function() {
-      $(this.el).html(App.Templates.DatabaseIndex({
+      $(this.el).html(JST['database_index']({
         collection: this.collection
       }));
       return $("#left").html(this.el)
