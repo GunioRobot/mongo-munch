@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/gdb/embedded-mongo.git
+  revision: 7f49cb1896d872a88a8bdd4b23259fbcc9d6c0cd
+  specs:
+    embedded-mongo (0.0.1)
+      mongo
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -7,6 +14,7 @@ GEM
       i18n (~> 0.6)
     activesupport (3.1.1)
       multi_json (~> 1.0)
+    awesome_print (0.4.0)
     bson (1.3.1)
     bson_ext (1.3.1)
     builder (3.0.0)
@@ -73,9 +81,11 @@ PLATFORMS
 
 DEPENDENCIES
   activemodel (~> 3.1.1)
+  awesome_print
   bson_ext
   capistrano
   capistrano-ext
+  embedded-mongo!
   foreman
   growl_notify
   guard

@@ -3,13 +3,6 @@ require 'rubygems'
 require 'bundler/setup'
 Bundler.require(:default)
 
-# require 'sinatra'
-# require 'mongo'
-# require 'json'
-# require 'sinatra/assetpack'
-# require 'sass'
-# require 'sinatra/jstpages'
-
 class MongoMunch < Sinatra::Base
 
   set :root, File.dirname(__FILE__)

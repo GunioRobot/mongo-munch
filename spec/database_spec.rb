@@ -1,13 +1,17 @@
 
 $: << File.dirname(__FILE__) unless $:.include? File.dirname(__FILE__)
 require 'spec_helper'
+require 'database'
 
-describe Array do
-  it "can be created with no arguments" do
-    Array.new.must_be_instance_of Array
+describe Database do
+  it 'can set the database connection' do
+    Database.connection = EmbeddedMongo::Connection.new
+    Database.connection.wont_be_nil
   end
-
-  it "can be created with a specific size" do
-    Array.new(10).size.must_equal 10
+  it 'can get the database info' do
+    Database.connection = EmbeddedMongo::Connection.new
+    Database.info
   end
 end
+
+
