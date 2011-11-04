@@ -1,11 +1,14 @@
+
 require 'rubygems'
 require 'bundler/setup'
-require 'sinatra'
-require 'mongo'
-require 'json'
-require 'sinatra/assetpack'
-require 'sass'
-require 'sinatra/jstpages'
+Bundler.require(:default)
+
+# require 'sinatra'
+# require 'mongo'
+# require 'json'
+# require 'sinatra/assetpack'
+# require 'sass'
+# require 'sinatra/jstpages'
 
 class MongoMunch < Sinatra::Base
 
