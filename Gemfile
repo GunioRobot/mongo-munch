@@ -15,7 +15,7 @@ gem 'activemodel', '~> 3.1.1'
 gem 'rake'
 gem 'guard'
 gem 'guard-minitest'
-gem 'embedded-mongo', :git => 'git://github.com/gdb/embedded-mongo.git'
+# gem 'embedded-mongo', :path => '../gems/embedded-mongo' # :git => 'git://github.com/gdb/embedded-mongo.git'
 gem "awesome_print", require: "ap"
 
 group :darwin do

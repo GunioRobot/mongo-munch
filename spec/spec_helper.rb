@@ -3,7 +3,7 @@ require 'bundler/setup'
 
 Bundler.require(:default) 
 platform = RUBY_PLATFORM.match(/(linux|darwin)/)[0].to_sym
-Bundler.setup(platform)
+Bundler.require(platform)
 
 require 'active_model'
 

@@ -1,29 +1,29 @@
 require 'active_model'
 require 'active_support/all'
 
-class Database
+class Collection
   extend ActiveModel::Naming
 
-  cattr_accessor :connection
-
   attr_accessor :name
-  attr_reader :db
+  attr_reader :collection, :database
 
-  def self.all
-    self.connection.database_names.map{ |name| self.new(name:name) }
+  def self.all(database)
+    Database.connection.collection_names.map{ |name| self.new(database, name:name) }
   end
 
-  def initialize(data={})
+  def initialize(database, data={})
+    @database = database
     @name = data[:name]
-    save
   end
 
-  def self.create(data={})
-    self.new(data)
+  def self.create(database, data={})
+    collection = self.new(database, data)
+    collection.save
+    collection
   end
 
   def save
-    @db = if valid?
+    @collection = if valid?
       self.class.connection.db(@name)
     else
       nil
@@ -40,11 +40,7 @@ class Database
   end
 
   def valid?
-    !@name.to_s.empty?
-  end
-
-  def destroy
-    self.class.connection.drop_database(@name)
+    !@database.nil? && !@name.to_s.empty?
   end
 
   def new_record?
@@ -52,23 +48,19 @@ class Database
   end
 
   def destroyed?
-    !persisted?
+    true 
   end
 
   def persisted?
-    self.class.all.include?(self)
-  end
-
-  def id
-    @name
+    !@db.nil?
   end
 
   def to_key
-    id
+    persisted? ? @name : nil
   end
 
   def to_param
-    id
+    persisted? ? @name : nil
   end
 
   def errors
