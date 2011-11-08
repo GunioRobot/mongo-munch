@@ -6,7 +6,9 @@ require 'database'
 describe Database do
 
   before :each do
+    @name = 'test'
     Database.connection = Mongo::Connection.new
+    Database.connection.drop_database(@name)
   end
 
   it 'can set the database connection' do
@@ -21,11 +23,10 @@ describe Database do
     Database.new.valid?.must_equal false
   end
 
-  it 'can create a new database, but it wont exist' do
-    name = 'test'
-    database = Database.create(name:name)
-    database.db.wont_be_nil
-    Database.all.wont_include(Database.new(name:name))
+  it 'can create a new database, but it wont exist!' do
+    database = Database.create(name:@name)
+    database.mongo_db.wont_be_nil
+    Database.all.wont_include(Database.new(name:@name))
   end
 
 end

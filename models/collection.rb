@@ -5,15 +5,27 @@ class Collection
   extend ActiveModel::Naming
 
   attr_accessor :name
-  attr_reader :collection, :database
+  attr_reader :mongo_collection, :database
 
   def self.all(database)
-    Database.connection.collection_names.map{ |name| self.new(database, name:name) }
+    database.mongo_db.collection_names.map{ |name| self.new(database, name:name) }
   end
 
   def initialize(database, data={})
     @database = database
     @name = data[:name]
+  end
+
+  def mongo_db
+    @database.mongo_db
+  end
+
+  def to_hash
+    { name:@name, id:id }
+  end
+
+  def connection
+    @database.connection
   end
 
   def self.create(database, data={})
@@ -23,12 +35,12 @@ class Collection
   end
 
   def save
-    @collection = if valid?
-      self.class.connection.db(@name)
+    @mongo_collection = if valid?
+      mongo_db.collection(@name)
     else
       nil
     end
-    !@db.nil?
+    !@mongo_collection.nil?
   end
 
   def ==(other)
@@ -47,20 +59,28 @@ class Collection
     !persisted?
   end
 
+  def destroy
+    @mongo_collection.drop
+  end
+
   def destroyed?
     true 
   end
 
   def persisted?
-    !@db.nil?
+    !@mongo_collection.nil?
+  end
+
+  def id
+    @name
   end
 
   def to_key
-    persisted? ? @name : nil
+    id
   end
 
   def to_param
-    persisted? ? @name : nil
+    id
   end
 
   def errors

@@ -7,7 +7,7 @@ class Database
   cattr_accessor :connection
 
   attr_accessor :name
-  attr_reader :db
+  attr_reader :mongo_db
 
   def self.all
     self.connection.database_names.map{ |name| self.new(name:name) }
@@ -18,17 +18,25 @@ class Database
     save
   end
 
+  def connection
+    self.class.connection
+  end
+
   def self.create(data={})
     self.new(data)
   end
 
+  def to_hash
+    { name:@name, id:id }
+  end
+
   def save
-    @db = if valid?
-      self.class.connection.db(@name)
+    @mongo_db = if valid?
+      connection.db(@name)
     else
       nil
     end
-    !@db.nil?
+    !@mongo_db.nil?
   end
 
   def ==(other)
@@ -44,7 +52,7 @@ class Database
   end
 
   def destroy
-    self.class.connection.drop_database(@name)
+    connection.drop_database(@name)
   end
 
   def new_record?
