@@ -13,6 +13,10 @@ class Database
     self.connection.database_names.map{ |name| self.new(name:name) }
   end
 
+  def self.find(data={})
+    self.all.select { |database| database == self.new(data) }
+  end
+
   def initialize(data={})
     @name = data[:name]
     save
@@ -27,7 +31,7 @@ class Database
   end
 
   def to_hash
-    { name:@name, id:id }
+    { name:@name }
   end
 
   def save
@@ -67,16 +71,12 @@ class Database
     self.class.all.include?(self)
   end
 
-  def id
+  def to_key
     @name
   end
 
-  def to_key
-    id
-  end
-
   def to_param
-    id
+    @name.parameterize unless @name.to_s.empty?
   end
 
   def errors

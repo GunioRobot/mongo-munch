@@ -1,14 +1,21 @@
-(function() {
+(function($) {
+
   window.App.Views.DatabaseIndex = Backbone.View.extend({
+
     initialize: function() {
-      this.databases = this.options.databases
-      return this.render()
+      _.bindAll(this, 'render')
+      this.collection.bind('reset', this.render)
     },
+
     render: function() {
+      var $ = jQuery
       $(this.el).html(JST['database_index']({
         collection: this.collection
-      }));
-      return $("#left").html(this.el)
+      }))
+      $("#databases").html(this.el)
+      return this
     }
+
   })
-}).call(this)
+
+}).call(jQuery)

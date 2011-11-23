@@ -13,7 +13,7 @@ class Collection
 
   def initialize(database, data={})
     @database = database
-    @name = data[:name]
+    @name = data[:name] || data[:id]
   end
 
   def mongo_db
@@ -21,7 +21,7 @@ class Collection
   end
 
   def to_hash
-    { name:@name, id:id }
+    { name:@name }
   end
 
   def connection
@@ -44,7 +44,7 @@ class Collection
   end
 
   def ==(other)
-    @name == other.name
+    name == other.name
   end
 
   def to_model
@@ -71,16 +71,12 @@ class Collection
     !@mongo_collection.nil?
   end
 
-  def id
+  def to_key
     @name
   end
 
-  def to_key
-    id
-  end
-
   def to_param
-    id
+    @name.parameterize
   end
 
   def errors

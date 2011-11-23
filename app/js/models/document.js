@@ -1,3 +1,6 @@
-window.App.Models.Document = Backbone.Model.extend({
+(function($) {
 
-})
+  window.App.Models.Document = Backbone.Model.extend({
+  })
+
+}).call(jQuery)

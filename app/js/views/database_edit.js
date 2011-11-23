@@ -1,17 +1,23 @@
-(function() {
+(function($) {
+
   window.App.Views.DatabaseEdit = Backbone.View.extend({
+
     events: {
       "submit form": "save",
       "click a.delete": "delete"
     },
+
     "delete": function(e) {
       e.preventDefault()
       this.model.destroy()
       return this.remove()
     },
+
     initialize: function() {
-      return this.render()
+      _.bindAll(this, 'render')
+      this.model.bind('change', this.render)
     },
+
     save: function() {
       var self = this
       var msg = (this.model.isNew() ? "Successfully created!" : "Saved!")
@@ -34,11 +40,16 @@
       });
       return false
     },
+    
     render: function() {
+      var $ = jQuery
       $(this.el).html(JST['database_edit']({
         model: this.model
       }))
-      return $("#left").html(this.el)
+      $("#databases .edit").html(this.el)
+      return this
     }
+
   })
-}).call(this)
+
+}).call(jQuery)

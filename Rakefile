@@ -1,5 +1,5 @@
 
-APP_FILE  = 'mongomunch.rb'
+APP_FILE  = 'mongo_munch.rb'
 APP_CLASS = 'MongoMunch'
 
 require 'sinatra/assetpack/rake'

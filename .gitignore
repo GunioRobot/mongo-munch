@@ -2,3 +2,4 @@
 *.swo
 .sass-cache
 .bundle
+.jhw-cache

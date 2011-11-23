@@ -1,14 +1,21 @@
-(function() {
+(function($) {
+
   window.App.Views.CollectionIndex = Backbone.View.extend({
+
     initialize: function() {
-      this.collections = this.options.collections
-      return this.render()
+      _.bindAll(this, 'render')
+      this.model.bind('change', this.render)
     },
+
     render: function() {
+      var $ = jQuery
       $(this.el).html(JST['collection_index']({
         collection: this.collection
       }))
-      return $("#middle").html(this.el)
+      $("#collections").html(this.el)
+      return this
     }
+
   })
-}).call(this)
+
+}).call(jQuery)

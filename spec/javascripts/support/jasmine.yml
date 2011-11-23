@@ -1,0 +1,12 @@
+src_files:
+  - app/js/jquery.js
+  - app/js/underscore.js
+  - app/js/backbone.js
+  - app/js/*.{js,coffee}
+  - app/js/**/*.{js,coffee}
+helpers:
+  - helpers/**/*.{js,coffee}
+spec_files:
+  - "**/*_spec.{js,coffee}"
+src_dir:
+spec_dir: spec/javascripts

@@ -1,8 +1,38 @@
 
 @import "app/css/fluid_grid";
 
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
 #container {
   @include container;
+  height: auto;
+  min-height: 100%;
+}
+
+#sidebar {
+  @include grid(3);
+}
+
+#content {
+  @include grid(6);
+}
+
+#databases {
+  list-style: none;
+}
+
+#collections {
+  list-style: none;
+}
+
+#documents {
 }
 
 header {
@@ -13,23 +43,6 @@ header {
 
 header h1 {
   text-align: center;
-}
-
-#main {
-  margin-bottom: 10px;
-
-  #left {
-    @include grid(3)
-  }
-
-  #middle {
-    @include grid(6)
-  }
-
-  #right {
-    @include grid(3)
-  }
-
 }
 
 footer p {

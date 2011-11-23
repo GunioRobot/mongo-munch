@@ -29,6 +29,10 @@ describe Database do
     Database.all.wont_include(Database.new(name:@name))
   end
 
+  it 'can find a database' do
+    Database.find(name:'local').must_equal [Database.new(name:'local')]
+  end
+
 end
 
 

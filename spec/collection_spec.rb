@@ -23,7 +23,7 @@ describe Collection do
 
   it 'can create a new collection, but it wont exist!' do
     collection = Collection.create(@database,name:@name)
-    collection.db.wont_be_nil
+    collection.mongo_db.wont_be_nil
     Collection.all(@database).must_equal []
   end
 
