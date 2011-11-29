@@ -1,2 +1,2 @@
 web: bundle exec shotgun --server=thin
-guard: bundle exec guard
+#guard: bundle exec guard

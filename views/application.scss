@@ -1,48 +1,55 @@
 
-@import "app/css/fluid_grid";
+@import "./fluid_grid";
 
 html, body {
   height: 100%;
 }
 
 body {
+  font-family: "Helvetica Neue", "Helvetica", "Calibri", "sans";
   margin: 0;
   padding: 0;
+  background-color: #36393D;
 }
 
 #container {
   @include container;
   height: auto;
   min-height: 100%;
-}
+  background-color: white;
 
-#sidebar {
-  @include grid(3);
-}
-
-#content {
-  @include grid(6);
 }
 
 #databases {
-  list-style: none;
+  @include grid(3);
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 #collections {
-  list-style: none;
+  @include grid(3);
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 #documents {
+  @include grid(6);
 }
 
 header {
   @include grid(12);
   margin-top: 10px;
   margin-bottom: 10px;
-}
 
-header h1 {
-  text-align: center;
+  h1 {
+    text-align: center;
+  }
 }
 
 footer p {

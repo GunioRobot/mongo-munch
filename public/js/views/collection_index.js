@@ -4,7 +4,7 @@
 
     initialize: function() {
       _.bindAll(this, 'render')
-      this.model.bind('change', this.render)
+      this.collection.bind('reset', this.render)
     },
 
     render: function() {
@@ -19,3 +19,4 @@
   })
 
 }).call(jQuery)
+

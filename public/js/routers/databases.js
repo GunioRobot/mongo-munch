@@ -6,7 +6,7 @@
       "": "index",
       "databases/:id": "edit",
       "database/new": "new_database",
-      "databases/:id/collections": "collections"
+      "database/:id/collections": "collections"
     },
 
     edit: function(id) {
@@ -50,21 +50,23 @@
     },
 
     collections: function(id) {
-      var db = new App.Models.Database({ id: id })
-      return db.collections.fetch({
+      this.index()
+      var database = new App.Models.Database({ id: id })
+      new App.Views.CollectionIndex({
+        collection: database.collections
+      })
+
+      return database.collections.fetch({
         success: function(model, resp) {
-          return new App.Views.CollectionIndex({
-            collection: db.collections
-          })
         },
         error: function() {
           new Error({
             message: "Error loading collections."
           })
-          return window.location.hash = "#"
         }
       })
     }
   })
 
 }).call(jQuery)
+

@@ -12,4 +12,4 @@ require 'minitest/autorun'
 
 $: << File.join(File.dirname(__FILE__), '..', 'models') unless $:.include? File.join(File.dirname(__FILE__), '..', 'models')
 
-Capybara.javascript_driver = :webkit
+# Capybara.javascript_driver = :webkit

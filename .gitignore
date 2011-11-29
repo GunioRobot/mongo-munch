@@ -1,5 +1,3 @@
-*.swp
-*.swo
-.sass-cache
 .bundle
 .jhw-cache
+.sass-cache

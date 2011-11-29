@@ -4,7 +4,7 @@
 
     initialize: function() {
       this.collections = new App.Collections.Collections
-      return this.collections.url = "databases/" + this.name + "/collections"
+      this.collections.url = "database/" + this.id + "/collections"
     },
 
     url: function() {
@@ -12,9 +12,10 @@
       if (this.isNew()) {
         return base
       }
-      return base + (base.charAt(base.length - 1) === "/" ? "" : "/") + this.name
+      return base + (base.charAt(base.length - 1) === "/" ? "" : "/") + this.id
     }
 
   })
 
 }).call(jQuery)
+

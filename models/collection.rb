@@ -4,16 +4,18 @@ require 'active_support/all'
 class Collection
   extend ActiveModel::Naming
 
-  attr_accessor :name
+  attr_accessor :id, :name
   attr_reader :mongo_collection, :database
 
   def self.all(database)
-    database.mongo_db.collection_names.map{ |name| self.new(database, name:name) }
+    return [] unless database.present?
+    database.mongo_db.collection_names.map{ |name| self.new(database, id:name, name:name) }
   end
 
   def initialize(database, data={})
     @database = database
-    @name = data[:name] || data[:id]
+    @id = data[:id]
+    @name = data[:name]
   end
 
   def mongo_db
@@ -21,7 +23,7 @@ class Collection
   end
 
   def to_hash
-    { name:@name }
+    { id:@id, name:@name }
   end
 
   def connection
@@ -36,7 +38,7 @@ class Collection
 
   def save
     @mongo_collection = if valid?
-      mongo_db.collection(@name)
+      mongo_db.collection(@id)
     else
       nil
     end
@@ -44,7 +46,7 @@ class Collection
   end
 
   def ==(other)
-    name == other.name
+    id == other.id
   end
 
   def to_model
@@ -72,11 +74,11 @@ class Collection
   end
 
   def to_key
-    @name
+    @id
   end
 
   def to_param
-    @name.parameterize
+    @id.parameterize
   end
 
   def errors
