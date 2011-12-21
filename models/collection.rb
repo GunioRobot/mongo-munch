@@ -66,7 +66,7 @@ class Collection
   end
 
   def destroyed?
-    true 
+    true
   end
 
   def persisted?

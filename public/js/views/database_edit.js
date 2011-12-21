@@ -40,7 +40,7 @@
       });
       return false
     },
-    
+
     render: function() {
       var $ = jQuery
       $(this.el).html(JST['database_edit']({
